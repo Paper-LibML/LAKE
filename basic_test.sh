@@ -18,12 +18,13 @@ function ctrl_c() {
 
 
 #Check if the kernel version is correct
-kernel_version=$(uname -r)
-echo $kernel_version
-if [ "$kernel_version" != "6.0.0-lake" ]; then
-  echo "Error : Required Kernel Version not found"
-  exit
-fi
+# TODO: Add regex
+# kernel_version=$(uname -r)
+# echo $kernel_version
+# if [ "$kernel_version" != "6.0.0-lake" ]; then
+#   echo "Error : Required Kernel Version not found"
+#   exit
+# fi
 
 #Check if the nvidia driver is installed
 nvidia_check=$(nvidia-smi | grep 'Driver Version')

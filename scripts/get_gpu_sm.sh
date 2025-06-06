@@ -13,7 +13,10 @@ printf("-gencode arch=compute_%d,code=sm_%d\n",v,v);
 EOF
 
 # probe the card and cleanup
-/usr/local/cuda/bin/nvcc /tmp/cudaComputeVersion.cu -o /tmp/cudaComputeVersion
+
+# TODO: Add in other scripts
+/usr/local/cuda/bin/nvcc -ccbin gcc-11 /tmp/cudaComputeVersion.cu -o /tmp/cudaComputeVersion
+
 /tmp/cudaComputeVersion
 rm /tmp/cudaComputeVersion.cu
 rm /tmp/cudaComputeVersion

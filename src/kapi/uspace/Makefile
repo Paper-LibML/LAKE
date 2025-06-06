@@ -22,8 +22,8 @@ PY_LINKER_FLAGS = $(shell $(pyver)-config --libs $(embf))
 #PY_COMPILE_FLAGS = $(shell $(pyver)-config --cflags $(embf))
 #nvcc doesnt understand flags from this, build manually
 PY_COMPILE_FLAGS = -I/usr/include/$(pyver) -DNDEBUG -O2 -lcrypt -ldl  -lm
-PY_COMPILE_FLAGS += -I../../../lakevenv/lib/$(pyver)/site-packages/numpy/core/include
-PY_COMPILE_FLAGS += -I../../../lakevenv/lib/$(pyver)/site-packages/numpy/core/include/numpy
+PY_COMPILE_FLAGS += -I../../../lakevenv/lib/$(pyver)/site-packages/numpy/_core/include
+PY_COMPILE_FLAGS += -I../../../lakevenv/lib/$(pyver)/site-packages/numpy/_core/include/numpy
 
 current_dir = $(shell pwd)
 model:=/../../kleio/lstm_page_539
