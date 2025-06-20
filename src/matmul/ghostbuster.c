@@ -38,14 +38,11 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <errno.h>
+
 static inline uint64_t get_tsns() {
     struct timeval current_time;
     gettimeofday(&current_time, 0);
     return current_time.tv_sec*1000000000 + current_time.tv_usec*1000;
-}
-void get_random_bytes(char* x, int n) {
-    for (int i = 0; i < n; i++)
-        x[i] = rand();
 }
 
 #define usleep_range(X,Y) sleep(X/1000000)
@@ -59,7 +56,7 @@ void get_random_bytes(char* x, int n) {
 #include <cuda.h>
 #endif
 
-static char *cubin_path = "/home/hfingler/hf-HACK/src/ghostbuster_knn/knncuda.cubin";
+static char *cubin_path = "/home/gic/Desktop/LAKE/src/matmul/knncuda.cubin";
 #ifdef __KERNEL__
 module_param(cubin_path, charp, 0444);
 MODULE_PARM_DESC(cubin_path, "The path to .cubin");
@@ -70,8 +67,6 @@ MODULE_PARM_DESC(cubin_path, "The path to .cubin");
 #define RUNS 5
 
 // XXX Need to handle FLOATs eventually
-typedef int FLOAT;
-typedef u64 DOUBLE;
 
 struct cuda_ctx
 {
@@ -79,9 +74,7 @@ struct cuda_ctx
     CUcontext ctx;
     CUstream stream;
     CUmodule mod;
-    CUfunction compute_dist;
-    CUfunction modified_insertion_sort;
-    CUfunction compute_sqrt;
+    CUfunction matrix_multiply;
 };
 
 typedef struct
@@ -93,13 +86,6 @@ typedef struct
 
 // CUDA vars
 struct cuda_ctx ctx;
-
-// KNN vars
-//static int ref_nb = 16384;
-static int ref_nb = 4096;
-//static int query_nb = 4096;
-//static int query_nb = 1024;
-static int k        = 16;
 
 int init_cuda(void)
 {
@@ -123,30 +109,17 @@ int init_cuda(void)
         goto out;
     }
 
+    PRINT("Loading cubin from: %s\n", cubin_path);
     ret = cuModuleLoad(&ctx.mod, cubin_path);
     if (ret) {
         PRINT("Err cuModuleLoad %d\n", ret);
         goto out;
     }
 
-    ret = cuModuleGetFunction(&ctx.compute_dist, ctx.mod,
-                               "_Z17compute_distancesPfiiS_iiiS_");
+    ret = cuModuleGetFunction(&ctx.matrix_multiply, ctx.mod,
+                              "_Z15matrix_multiplyPiS_S_i");
     if (ret) {
         PRINT("Err cuModuleGetFunction %d\n", ret);
-        goto out;
-    }
-
-    ret = cuModuleGetFunction(&ctx.modified_insertion_sort, ctx.mod,
-                               "_Z23modified_insertion_sortPfiPiiiii");
-    if (ret) {
-        PRINT("Err cuModuleGetFunction 2 %d\n", ret);
-        goto out;
-    }
-
-    ret = cuModuleGetFunction(&ctx.compute_sqrt, ctx.mod,
-                               "_Z12compute_sqrtPfiii");
-    if (ret) {
-        PRINT("Err cuModuleGetFunction 3 %d\n", ret);
         goto out;
     }
 
@@ -155,181 +128,188 @@ out:
 }
 // ==================== End CUDA ====================
 
-// ==================== Start KNN ====================
-void initialize_data(FLOAT *ref, int ref_nb, FLOAT *query,
-                     int query_nb, int dim)
+// ==================== Start Matmul ====================
+void init_matrix(int *dst, int n, int min, int max)
 {
-    int i;
-    int rand;
-    // XXX Resolve floats
-    // Generate random reference points
-    for (i = 0; i < ref_nb * dim; ++i) {
-        get_random_bytes(&rand, sizeof(rand));
-        ref[i] = 10 * (FLOAT)(rand); // / (DOUBLE) RAND_MAX );
+    int span = max - min + 1;
+    PRINT("min: %d\n", min);
+    PRINT("max: %d\n", max);
+
+#ifdef __KERNEL__
+    /* ---------- kernel space : strong CSPRNG already available ---------- */
+    for (int i = 0; i < n; ++i) {
+        u32 r;
+        get_random_bytes(&r, sizeof(r));   /* 32 random bits */
+        dst[i] = min + (r % span);
     }
-    // Generate random query points
-    for (i = 0; i < query_nb * dim; ++i) {
-        get_random_bytes(&rand, sizeof(rand));
-        query[i] = 10 * (FLOAT)(rand); // / (DOUBLE) RAND_MAX );
+
+#else
+    /* ------------------------ user space : libc rand() ------------------ */
+
+    /* RAND_MAX is guaranteed ≥ 32 767; suitable for spans ≤ 32 767.
+       For larger spans we stitch 2×16-bit chunks into 32 bits.          */
+    for (int i = 0; i < n; ++i) {
+        unsigned int r;
+
+#if RAND_MAX >= 0x7FFFFFFF          /* 31 good bits in one call */
+        r = (unsigned int)rand();
+#else                               /* typical 0-x7FFF : combine two calls */
+        r = ((unsigned int)rand() << 16) ^ (unsigned int)rand();
+#endif
+        dst[i] = min + (r % span);
     }
+#endif
 }
 
 static u64 ctime, ttime;
 
-int knn_cuda( const FLOAT *ref, int ref_nb, const FLOAT *query,
-              int query_nb, int dim, FLOAT *knn_dist,
-              int *knn_index, int measure_compute)
+int matmul_cuda(const int *m1, const int *m2, int dimension,
+                const int *mat_result, int measure_compute)
 {
     int ret = 0;
+
     // Launch params
-    dim3 block0, block1, block2;
-    dim3 grid0, grid1, grid2;
+    dim3 block0;
+    dim3 grid0;
+
     // Vars for computation
-    CUdeviceptr ref_dev, query_dev, dist_dev, index_dev;
-    size_t ref_pitch_in_bytes;
-    size_t query_pitch_in_bytes;
-    size_t dist_pitch_in_bytes;
-    size_t index_pitch_in_bytes;
-    // Pitch values
-    size_t ref_pitch, query_pitch;
-    size_t dist_pitch, index_pitch;
-    // Params for pitch (4, 8, or 16)
-    size_t element_size_bytes = 16;
+    CUdeviceptr m1_dev, m2_dev, mat_result_dev;
+
+    int size = dimension * dimension;
+
     u64 t_start, t_stop, c_start, c_stop;
     ctime = 0; ttime = 0; 
 
     t_start = ktime_get_ns();
-    // Allocate global memory
-    ret |= cuMemAllocPitch( &ref_dev, &ref_pitch_in_bytes,
-                            ref_nb * sizeof( FLOAT ), dim, element_size_bytes );
-    ret |= cuMemAllocPitch( &query_dev, &query_pitch_in_bytes,
-                            query_nb * sizeof( FLOAT ), dim, element_size_bytes );
-    ret |= cuMemAllocPitch( &dist_dev, &dist_pitch_in_bytes,
-                            query_nb * sizeof( FLOAT ),
-                            ref_nb, element_size_bytes );
-    ret |= cuMemAllocPitch( &index_dev, &index_pitch_in_bytes,
-                            query_nb * sizeof( int ), k, element_size_bytes );
+
+    // Allocate global memory (using cuMemAlloc instead of cuMemAllocPitch)
+    ret = cuMemAlloc(&m1_dev, size * sizeof(int));  // 1D memory allocation for m1
+    PRINT("cuMemAlloc m1_dev: %d\n", ret);
     if (ret) {
-        PRINT( "Memory allocation error\n" );
+        PRINT("Memory allocation error for m1\n");
         goto out;
     }
 
-    // Deduce pitch values
-    ref_pitch = ref_pitch_in_bytes / sizeof( FLOAT );
-    query_pitch = query_pitch_in_bytes / sizeof( FLOAT );
-    dist_pitch = dist_pitch_in_bytes / sizeof( FLOAT );
-    index_pitch = index_pitch_in_bytes / sizeof( int );
-
-    // Check pitch values
-    if (query_pitch != dist_pitch || query_pitch != index_pitch ) {
-        PRINT("Invalid pitch value\n" );
-        goto out;
-    }
-
-    // Copy reference and query data from the host to the device
-    ret |= cuMemcpyHtoDAsync(ref_dev, ref, ref_pitch_in_bytes, 0);
-    ret |= cuMemcpyHtoDAsync(query_dev, query, query_pitch_in_bytes, 0);
+    ret = cuMemAlloc(&m2_dev, size * sizeof(int));  // 1D memory allocation for m2
+    PRINT("cuMemAlloc m2_dev: %d\n", ret);
     if (ret) {
-        PRINT( "Unable to copy data from host to device\n" );
+        PRINT("Memory allocation error for m2\n");
         goto out;
     }
 
-    //if we're measuring just compute, wait until everything is done
+    ret = cuMemAlloc(&mat_result_dev, size * sizeof(int));  // 1D memory allocation for mat_result
+    PRINT("cuMemAlloc mat_result_dev: %d\n", ret);
+    if (ret) {
+        PRINT("Memory allocation error for mat_result\n");
+        goto out;
+    }
+
+    // Copy reference and query data from the host to the device (synchronous)
+    ret = cuMemcpyHtoD(m1_dev, m1, size * sizeof(int));  // Copy m1 data to device
+    PRINT("cuMemcpyHtoD m1_dev: %d\n", ret);
+    if (ret) {
+        PRINT("Unable to copy data from host to device for m1\n");
+        goto out;
+    }
+
+    ret = cuMemcpyHtoD(m2_dev, m2, size * sizeof(int));  // Copy m2 data to device
+    PRINT("cuMemcpyHtoD m2_dev: %d\n", ret);
+    if (ret) {
+        PRINT("Unable to copy data from host to device for m2\n");
+        goto out;
+    }
+
+    // If we're measuring just compute, wait until everything is done
     if (measure_compute) {
         cuCtxSynchronize();
         c_start = ktime_get_ns();
     }
-    
-    // Compute the squared Euclidean distances
+
+    // Compute the squared Euclidean distances (kernel launch)
     block0 = (dim3) { BLOCK_DIM, BLOCK_DIM, 1 };
-    grid0 = (dim3) { query_nb / BLOCK_DIM, ref_nb / BLOCK_DIM, 1 };
-    if (query_nb % BLOCK_DIM != 0) {
+    grid0 = (dim3) { size / BLOCK_DIM, size / BLOCK_DIM, 1 };
+    if (size % BLOCK_DIM != 0) {
         grid0.x += 1;
     }
-    if (ref_nb % BLOCK_DIM != 0) {
+    if (size % BLOCK_DIM != 0) {
         grid0.y += 1;
     }
 
-    void *args0[] = { &ref_dev, &ref_nb, &ref_pitch,
-                    &query_dev, &query_nb, &query_pitch,
-                    &dim, &dist_dev };
-    cuLaunchKernel( ctx.compute_dist, grid0.x, grid0.y,
-                    grid0.z, block0.x, block0.y,
-                    block0.z, 0, 0,
-                    args0, NULL);
-
-    // Sort the distances with their respective indexes
-    block1 = (dim3) { 256, 1, 1 };
-    grid1 = (dim3) { query_nb / 256, 1, 1 };
-    if (query_nb % 256 != 0) 
-        grid1.x += 1;
-  
-    void *args1[] = { &dist_dev, &dist_pitch, &index_dev,
-                    &index_pitch, &query_nb, &ref_nb,
-                    &k };
-    cuLaunchKernel( ctx.modified_insertion_sort, grid1.x, grid1.y,
-                    grid1.z, block1.x, block1.y,
-                    block1.z, 0, 0,
-                    args1, NULL);
-
-    // Compute the square root of the k smallest distances
-    block2 = (dim3) { 16, 16, 1 };
-    grid2 = (dim3) { query_nb / 16, k / 16, 1 };
-    if ( query_nb % 16 != 0 ) {
-        grid2.x += 1;
+    int n = dimension;
+    void *args0[] = { &m1_dev, &m2_dev, &mat_result_dev, &n };
+    ret = cuLaunchKernel( ctx.matrix_multiply, grid0.x, grid0.y,
+                          grid0.z, block0.x, block0.y,
+                          block0.z, 0, 0,
+                          args0, NULL); // Launch the kernel synchronously
+    PRINT("cuLaunchKernel: %d\n", ret);
+    if (ret) {
+        PRINT("Kernel launch failed\n");
+        goto out;
     }
-    if ( k % 16 != 0 ) {
-        grid2.y += 1;
-    }
-    void *args2[] = { &dist_dev, &query_nb, &query_pitch, &dim };
-    cuLaunchKernel( ctx.compute_sqrt, grid2.x, grid2.y,
-                    grid2.z, block2.x, block2.y,
-                    block2.z, 0, 0,
-                    args2, NULL);
 
-    //if we're measuring just compute, wait until everything is done
+    // Wait for kernel to finish
     if (measure_compute) {
         cuCtxSynchronize();
         c_stop = ktime_get_ns();
         ctime = c_stop - c_start;
     }
 
-    // Copy k smallest distances / indexes from the device to the host
-    ret |= cuMemcpyDtoHAsync( knn_dist, dist_dev,
-                            dist_pitch_in_bytes, 0 );
-    ret |= cuMemcpyDtoHAsync( knn_index, index_dev,
-                            index_pitch_in_bytes, 0 );
-    if ((ret = cuCtxSynchronize())) {
-        PRINT( "Unable to execute modified_insertion_sort kernel\n" );
+    // Copy mat_result from device to host with correct size
+    PRINT("mat_result_dev: %p, mat_result: %p, size: %d\n", mat_result_dev, mat_result, size * sizeof(int));
+    ret = cuMemcpyDtoH(mat_result, mat_result_dev, size * sizeof(int));  // Correct size copy
+    PRINT("cuMemcpyDtoH mat_result: %d\n", ret);
+    if (ret) {
+        PRINT("Unable to copy mat_result from device to host\n");
         goto out;
     }
 
+    ret = cuCtxSynchronize();
+    PRINT("cuCtxSynchronize: %d\n", ret);
+    if (ret) {
+        PRINT("Unable to synchronize context\n");
+        goto out;
+    }
+
+    PRINT("\n");
     t_stop = ktime_get_ns();
     ttime = t_stop - t_start;
+
 out:
-    cuMemFree( ref_dev );
-    cuMemFree( query_dev );
-    cuMemFree( dist_dev );
-    cuMemFree( index_dev ); 
+    cuMemFree( m1_dev );
+    cuMemFree( m2_dev );
+    cuMemFree( mat_result_dev );
     return ret;
 }
 
+
+void print_matrix(int *m, int dim)
+{
+    for (int i = 0; i < (dim < 5? dim : 5); ++i)
+    {
+        for (int j = 0; j < (dim < 5? dim : 5); ++j)
+        {
+            PRINT("%d ", m[i*dim + j]);
+        }
+        PRINT("\n");
+    }
+    PRINT("\n");
+}
+
+
 // XXX Should time at some point
-int test(const FLOAT *ref, int ref_nb, const FLOAT *query, int query_nb,
-         int dim)
+int test(const int *m1, const int *m2, int dimension)
 {
     int ret = 0;
     int i, measure_comp;
-    int *test_knn_index;
-    FLOAT *test_knn_dist;
+    int *mat_result;
     u64 ctimes;
     u64 ttimes;
+
     // Allocate memory for computed k-NN neighbors
-    test_knn_dist = (FLOAT *)kava_alloc(query_nb * k * sizeof(FLOAT));
-    test_knn_index = (int *)kava_alloc(query_nb * k * sizeof(int));
+    mat_result = (int *) kava_alloc(dimension * dimension * sizeof(int));
 
     // Allocation check
-    if (!test_knn_dist || !test_knn_index) {
+    if (!mat_result) {
         PRINT("Error allocating CPU memory for KNN results\n");
         ret = -ENOMEM;
         goto out;
@@ -341,12 +321,13 @@ int test(const FLOAT *ref, int ref_nb, const FLOAT *query, int query_nb,
     
     for (measure_comp = 0; measure_comp < 2; ++measure_comp) {
         for (i = 0; i < WARMS + RUNS; ++i) {
-            if ((ret = knn_cuda(ref, ref_nb, query, query_nb, dim,
-                        test_knn_dist, test_knn_index, measure_comp))) {
+            if ((ret = matmul_cuda(m1, m2, dimension, mat_result, measure_comp))) {
                 PRINT("Computation failed on round %d\n", i);
                 goto out;
             }
 
+            PRINT("Printing first 5 rows and cols:\n");
+            print_matrix(mat_result, dimension);            
             if (i >= WARMS) {
                 if (measure_comp == 1)
                     ctimes += ctime;
@@ -356,60 +337,58 @@ int test(const FLOAT *ref, int ref_nb, const FLOAT *query, int query_nb,
             usleep_range(2000, 5000);
         }
     }
-    PRINT("knn_GPU_BATCH_%d, %lld, %lld\n", query_nb, ctimes / (RUNS * 1000), ttimes / (RUNS * 1000));
+    PRINT("matmul_GPU_BATCH_, %lld, %lld\n", ctimes / (RUNS * 1000), ttimes / (RUNS * 1000));
 
 out:
-    kava_free(test_knn_dist);
-    kava_free(test_knn_index);
+    kava_free(mat_result);
 
     return ret;
 }
 
-// Allocate input points and output k-NN distances / indexes
-int run_knn(void)
+// Allocate
+int run_matmul(void)
 {
     int ret = 0;
-    FLOAT *ref;
-    FLOAT *query;
-    int ref_sz;
-    int query_sz;
-    int query_nbs[] = {8, 16, 32, 64, 128,256,512,1024};
-    int query_nb;
-    int i;
-    int dim = 128;
-    int ndims = 8;
-    //int dims[] = {256,512,1024};
-    //int ndims = 3;
 
-    for (i = 0; i < ndims; i++) {
-        query_nb = query_nbs[i];
-        ref_sz = ref_nb * dim * sizeof(FLOAT);
-        query_sz = query_nb * dim * sizeof(FLOAT);
-        ref = (FLOAT *)kava_alloc(ref_sz);
-        query = (FLOAT *)kava_alloc(query_sz);
+    int *m1;
+    int *m2;
 
-        // Allocation checks
-        if (!ref || !query) {
-            PRINT("Error allocating KNN CPU resources\n");
-            ret = -ENOMEM;
-            goto out;
-        }
-        // Initialize reference and query points with random values
-        initialize_data(ref, ref_nb, query, query_nb, dim);
-        ret = test(ref, ref_nb, query, query_nb, dim);
-        if (ret) {
-            PRINT("KNN execution test failed\n");
-            ret = -ENOENT;
-            goto out;
-        }
-out:
-        kava_free(ref);
-        kava_free(query);
+    int min = 0, max = 1;
+    int dimension = 5;
+    int size = dimension * dimension;
+
+    m1 = (int *) kava_alloc(size * sizeof(int));
+    m2 = (int *) kava_alloc(size * sizeof(int));
+
+    // Allocation checks
+    if (!m1 || !m2) {
+        PRINT("Error allocating matmul CPU resources\n");
+        ret = -ENOMEM;
+        goto out;
     }
+    // Initialize reference and query points with random values
+    init_matrix(m1, size, min, max);
+    init_matrix(m2, size, min, max);
+
+    PRINT("Matrix m1:\n");
+    print_matrix(m1, dimension);
+    PRINT("\n");
+    PRINT("Matrix m2:\n");
+    print_matrix(m2, dimension);
+
+    ret = test(m1, m2, dimension);
+    if (ret) {
+        PRINT("Matmul execution test failed\n");
+        ret = -ENOENT;
+        goto out;
+    }
+out:
+    kava_free(m1);
+    kava_free(m2);
 
     return 0;
 }
-// ==================== End KNN ====================
+// ==================== End Matmul ====================
 
 #ifdef __KERNEL__
 static int __init ghost_buster_init(void)
@@ -419,7 +398,7 @@ static int __init ghost_buster_init(void)
         PRINT("error init cuda");
         return ret;
     }
-    if ((ret = run_knn())) {
+    if ((ret = run_matmul())) {
         return ret;
     }
     return ret;
@@ -432,8 +411,8 @@ static void __exit ghost_buster_fini(void)
 module_init(ghost_buster_init);
 module_exit(ghost_buster_fini);
 
-MODULE_AUTHOR("Ariel Szekely");
-MODULE_DESCRIPTION("A knn module to detect Spectre attacks");
+MODULE_AUTHOR("Juan Diego Castro & Alvaro Guerrero");
+MODULE_DESCRIPTION("A matrix multiplication module");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(
     __stringify(1) "." __stringify(0) "." __stringify(0) "."
@@ -446,7 +425,7 @@ int main() {
     if ((ret = init_cuda())) {
         return ret;
     }
-    if ((ret = run_knn())) {
+    if ((ret = run_matmul())) {
         return ret;
     }
     return ret;

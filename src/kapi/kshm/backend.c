@@ -236,14 +236,8 @@ int kava_allocator_init(size_t size)
     }
 
     /* Allocate memory */
-    // pr_info("[kava-shm] Executing dma_alloc_coherent\n");
-    // err = dma_set_mask_and_coherent(dev_node, DMA_BIT_MASK(32));
-    // if (err) {
-    //     pr_err("dma_set_mask returned: %d\n", err);
-    //     return -EIO;
-    // }
     dmamask = DMA_BIT_MASK(32);
-    dev_node->dma_mask = (u64*)&dmamask;
+    dev_node->dma_mask = (u64*) &dmamask;
     dev_node->coherent_dma_mask = DMA_BIT_MASK(32);
 
     start = dma_alloc_coherent(dev_node, size, &dma_handle, GFP_KERNEL);

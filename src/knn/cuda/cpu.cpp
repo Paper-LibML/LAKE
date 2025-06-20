@@ -119,7 +119,7 @@ void  modified_insertion_sort(float *dist, int *index, int length, int k){
 }
 
 
-/*
+/**
  * For each input query point, locates the k-NN (indexes and distances) among the reference points.
  *
  * @param ref        refence points

@@ -191,7 +191,7 @@ static int run_gpu(int* batch_sizes, int n_batches, int max_batch, int RUNS, int
         if (rand_counter == 4) rand_counter = 0;
     }
 
-    gpu_get_cufunc(cubin_path, "_Z13mllb_infer_v2PfS_S_S_fS_", &batch_mllb_kernel);
+    /* gpu_get_cufunc(cubin_path, "_Z13mllb_infer_v2PfS_S_S_fS_", &batch_mllb_kernel); */
     comp_run_times = (u64*) vmalloc(RUNS*sizeof(u64));
     total_run_times = (u64*) vmalloc(RUNS*sizeof(u64));
 
@@ -202,9 +202,9 @@ static int run_gpu(int* batch_sizes, int n_batches, int max_batch, int RUNS, int
 
         //warmup
         gpu_setup_inputs(d_inputs, linear_inputs, batch_size);
-        gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0);
+        /* gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0); */
         cuCtxSynchronize();
-        gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0);
+        /* gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0); */
         cuCtxSynchronize();
         usleep_range(1000, 2000);
 
@@ -212,7 +212,7 @@ static int run_gpu(int* batch_sizes, int n_batches, int max_batch, int RUNS, int
         for (j = 0 ; j < RUNS ; j++) {
             t_start = ktime_get_ns();
             gpu_setup_inputs(d_inputs, linear_inputs, batch_size);
-            gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0);
+            /* gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 0); */
             gpu_get_result(batch_size, d_results, outs);
             t_stop = ktime_get_ns();
 
@@ -223,7 +223,7 @@ static int run_gpu(int* batch_sizes, int n_batches, int max_batch, int RUNS, int
         //do just computation
         for (j = 0 ; j < RUNS ; j++) {
             c_start = ktime_get_ns();
-            gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 1);
+            /* gpu_inference_many(&batch_mllb_kernel, batch_size, d_inputs, d_w1, d_b1, d_w2, *b2, d_results, 1); */
             c_stop = ktime_get_ns();
 
             comp_run_times[j] = (c_stop - c_start);
