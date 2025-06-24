@@ -1,0 +1,2981 @@
+Loading cubin from: /home/gic/Documents/Flank/LAKE/src/matmul/knncuda.cubin
+Matrix m1:
+1 0 1 1 1 
+1 0 0 0 1 
+0 0 1 1 1 
+0 0 0 0 0 
+0 1 0 0 0 
+
+
+Matrix m2:
+1 0 0 1 0 
+0 1 1 1 1 
+1 0 0 1 1 
+1 0 0 1 1 
+0 0 0 0 0 
+
+######################## INITIALIZING TEST FOR DIMENSION = 100 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1085000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1030000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1052000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1007000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1004000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1004000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 0
+ttime: 1003000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 843000
+ttime: 1016000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 851000
+ttime: 1035000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 842000
+ttime: 981000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 852000
+ttime: 1111000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 850000
+ttime: 1134000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 843000
+ttime: 1052000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada13c00, mat_result: 0x57836309c650, size: 40000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+27 24 16 27 27 
+28 24 26 32 34 
+21 20 17 20 21 
+17 23 20 23 25 
+21 28 23 27 28 
+
+ctime: 843000
+ttime: 1008000
+
+matmul_GPU_BATCH_, 846, 1014
+Final metrics: ctime=4230000, ttime=5070000
+Matrix m1:
+0 0 1 1 1 
+1 0 0 0 1 
+0 1 1 1 0 
+1 1 0 1 0 
+1 0 1 1 0 
+
+
+Matrix m2:
+1 0 0 0 1 
+1 1 0 0 0 
+1 0 0 0 1 
+1 1 1 0 1 
+1 1 1 1 0 
+
+######################## INITIALIZING TEST FOR DIMENSION = 200 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13685000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13921000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13688000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13815000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13682000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13641000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 0
+ttime: 13727000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13347000
+ttime: 13871000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13341000
+ttime: 13696000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13338000
+ttime: 13658000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13334000
+ttime: 13655000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13331000
+ttime: 13605000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13330000
+ttime: 13594000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ada4e400, mat_result: 0x5783630f62d0, size: 160000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+47 41 43 55 54 
+46 40 43 46 43 
+55 46 44 54 56 
+45 48 47 56 53 
+45 42 38 44 54 
+
+ctime: 13331000
+ttime: 13599000
+
+matmul_GPU_BATCH_, 13332, 13710
+Final metrics: ctime=66664000, ttime=68553000
+Matrix m1:
+0 0 0 0 1 
+0 1 1 0 1 
+0 1 1 1 1 
+1 0 0 1 1 
+1 1 1 1 0 
+
+
+Matrix m2:
+0 1 0 0 1 
+0 1 0 0 0 
+1 0 0 0 0 
+1 1 0 0 0 
+1 0 0 0 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 300 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 67999000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 37531000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 37049000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 36705000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 36537000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 36536000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 0
+ttime: 36549000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36091000
+ttime: 36618000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36101000
+ttime: 36613000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36086000
+ttime: 36519000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36088000
+ttime: 36499000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36093000
+ttime: 36565000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36106000
+ttime: 36954000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adab0000, mat_result: 0x578363157d50, size: 360000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+68 71 69 66 77 
+75 66 73 80 83 
+67 65 70 78 76 
+69 59 70 71 76 
+80 84 85 84 93 
+
+ctime: 36097000
+ttime: 36587000
+
+matmul_GPU_BATCH_, 36094, 36675
+Final metrics: ctime=180470000, ttime=183376000
+Matrix m1:
+0 1 1 1 1 
+1 1 0 1 1 
+0 0 1 1 0 
+1 1 1 1 0 
+1 1 1 0 0 
+
+
+Matrix m2:
+1 1 0 0 1 
+0 0 1 0 1 
+1 1 1 1 1 
+0 0 1 0 0 
+0 1 1 0 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 400 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114875000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114657000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114655000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114730000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114740000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114671000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 0
+ttime: 114678000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 114001000
+ttime: 114759000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113974000
+ttime: 114702000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113997000
+ttime: 114746000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113976000
+ttime: 114666000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113971000
+ttime: 114626000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113976000
+ttime: 114660000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adb38800, mat_result: 0x5783631e08d0, size: 640000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+91 90 101 93 93 
+102 84 112 116 102 
+90 81 98 92 82 
+87 85 97 95 98 
+100 94 94 93 92 
+
+ctime: 113962000
+ttime: 114656000
+
+matmul_GPU_BATCH_, 113976, 114694
+Final metrics: ctime=569882000, ttime=573474000
+Matrix m1:
+0 1 1 1 1 
+1 0 0 1 1 
+0 0 0 1 1 
+0 1 0 1 1 
+1 1 0 1 0 
+
+
+Matrix m2:
+1 1 1 0 0 
+0 0 0 0 1 
+0 0 1 1 0 
+1 1 0 1 1 
+1 1 0 0 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 500 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 279618000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 279302000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 280464000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 281098000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 280625000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 280409000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 0
+ttime: 280372000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279312000
+ttime: 280446000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279440000
+ttime: 280672000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279304000
+ttime: 280471000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279309000
+ttime: 280448000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279308000
+ttime: 280501000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279308000
+ttime: 280566000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947adc00000, mat_result: 0x578363290550, size: 1000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+103 133 132 133 131 
+123 138 135 137 134 
+107 120 116 134 123 
+118 135 132 138 130 
+100 120 112 135 120 
+
+ctime: 279306000
+ttime: 280475000
+
+matmul_GPU_BATCH_, 279307, 280593
+Final metrics: ctime=1396535000, ttime=1402968000
+Matrix m1:
+1 0 0 1 0 
+1 0 0 0 1 
+0 0 1 1 0 
+0 0 0 1 1 
+0 0 0 0 0 
+
+
+Matrix m2:
+0 0 1 0 1 
+0 0 0 1 0 
+1 1 1 1 1 
+0 1 1 0 0 
+0 1 1 1 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 600 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 580914000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 580544000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 580525000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 580533000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 580541000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 581057000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 0
+ttime: 584975000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583452000
+ttime: 584917000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583467000
+ttime: 584949000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583613000
+ttime: 585249000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583483000
+ttime: 585028000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583500000
+ttime: 584957000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583499000
+ttime: 584955000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x5783633671f0, size: 1440000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+154 163 151 153 144 
+150 167 152 159 149 
+159 165 174 158 166 
+147 137 145 134 128 
+150 158 163 150 143 
+
+ctime: 583512000
+ttime: 584981000
+
+matmul_GPU_BATCH_, 583521, 581526
+Final metrics: ctime=2917607000, ttime=2907631000
+Matrix m1:
+1 0 1 0 1 
+0 0 0 0 0 
+1 1 1 0 0 
+0 0 1 0 1 
+0 1 0 1 1 
+
+
+Matrix m2:
+1 1 1 0 0 
+1 0 1 0 0 
+1 0 1 1 1 
+0 0 0 0 0 
+0 0 1 1 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 700 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1083215000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1082671000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1085357000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1087291000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1087149000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1087007000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 0
+ttime: 1087098000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1085347000
+ttime: 1087055000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1085333000
+ttime: 1087065000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1085350000
+ttime: 1087066000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1090699000
+ttime: 1092448000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1098262000
+ttime: 1100076000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1098287000
+ttime: 1100027000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947ade00000, mat_result: 0x578363465070, size: 1960000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+151 172 176 168 188 
+156 165 179 170 172 
+155 158 180 155 175 
+176 170 180 171 186 
+175 175 196 182 180 
+
+ctime: 1098280000
+ttime: 1100007000
+
+matmul_GPU_BATCH_, 1094175, 1086780
+Final metrics: ctime=5470878000, ttime=5433902000
+Matrix m1:
+0 1 0 0 1 
+0 0 0 1 0 
+0 0 1 0 0 
+0 1 0 1 1 
+1 1 1 0 1 
+
+
+Matrix m2:
+1 0 0 0 1 
+0 0 0 0 0 
+0 0 0 0 0 
+0 1 1 0 0 
+0 0 0 1 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 800 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1876225000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1875901000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1875654000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1883489000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1888836000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1889041000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 0
+ttime: 1888976000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1886970000
+ttime: 1889049000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1886984000
+ttime: 1889037000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1887207000
+ttime: 1889261000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1890830000
+ttime: 1892933000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1912672000
+ttime: 1914773000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1916990000
+ttime: 1919112000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x578363589ff0, size: 2560000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 203 220 203 190 
+209 187 214 197 188 
+210 200 196 211 191 
+229 204 227 216 213 
+211 191 209 189 176 
+
+ctime: 1917156000
+ttime: 1919145000
+
+matmul_GPU_BATCH_, 1904971, 1885199
+Final metrics: ctime=9524855000, ttime=9425996000
+Matrix m1:
+1 0 0 0 0 
+1 0 0 1 1 
+0 0 0 1 0 
+0 0 0 0 1 
+1 0 1 0 0 
+
+
+Matrix m2:
+1 1 0 0 1 
+1 0 0 0 0 
+1 1 1 0 0 
+0 1 0 1 0 
+0 0 0 1 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 900 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3073744000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3073076000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3072879000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3073049000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3073074000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3072983000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 0
+ttime: 3078779000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095781000
+ttime: 3098188000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095925000
+ttime: 3098342000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095817000
+ttime: 3098296000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095804000
+ttime: 3098279000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095959000
+ttime: 3098721000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095812000
+ttime: 3098372000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783636d6070, size: 3240000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+219 211 234 223 217 
+206 186 209 189 214 
+235 225 239 219 230 
+222 207 215 215 222 
+226 215 244 223 234 
+
+ctime: 3095985000
+ttime: 3098587000
+
+matmul_GPU_BATCH_, 3095875, 3074152
+Final metrics: ctime=15479377000, ttime=15370764000
+Matrix m1:
+1 0 1 1 0 
+1 0 0 1 1 
+1 0 0 0 0 
+0 0 0 1 0 
+0 0 1 1 0 
+
+
+Matrix m2:
+0 1 1 1 1 
+0 0 1 0 0 
+0 0 1 0 1 
+1 0 0 0 0 
+0 0 1 1 1 
+
+######################## INITIALIZING TEST FOR DIMENSION = 1000 ########################
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4722029000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721267000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721268000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721082000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721258000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721465000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 0
+ttime: 4721180000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718542000
+ttime: 4721367000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718530000
+ttime: 4721360000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718400000
+ttime: 4721167000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718531000
+ttime: 4721427000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718536000
+ttime: 4721380000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4718384000
+ttime: 4721244000
+
+cuMemAlloc m1_dev: 0
+cuMemAlloc m2_dev: 0
+cuMemAlloc mat_result_dev: 0
+cuMemcpyHtoD m1_dev: 0
+cuMemcpyHtoD m2_dev: 0
+cuLaunchKernel: 0
+mat_result_dev: 0x7947af400000, mat_result: 0x5783638491f0, size: 4000000
+cuMemcpyDtoH mat_result: 0
+cuCtxSynchronize: 0
+
+Printing first 5 rows and cols:
+245 242 234 255 241 
+266 248 280 259 252 
+250 258 263 275 252 
+272 261 267 253 243 
+271 260 263 264 263 
+
+ctime: 4722476000
+ttime: 4725270000
+
+matmul_GPU_BATCH_, 4719265, 4721250
+Final metrics: ctime=23596327000, ttime=23606253000

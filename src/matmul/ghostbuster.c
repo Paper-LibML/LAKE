@@ -56,7 +56,7 @@ static inline uint64_t get_tsns() {
 #include <cuda.h>
 #endif
 
-static char *cubin_path = "/home/gic/Desktop/LAKE/src/matmul/knncuda.cubin";
+static char *cubin_path = "/home/gic/Documents/Flank/LAKE/src/matmul/knncuda.cubin";
 #ifdef __KERNEL__
 module_param(cubin_path, charp, 0444);
 MODULE_PARM_DESC(cubin_path, "The path to .cubin");
@@ -132,8 +132,6 @@ out:
 void init_matrix(int *dst, int n, int min, int max)
 {
     int span = max - min + 1;
-    PRINT("min: %d\n", min);
-    PRINT("max: %d\n", max);
 
 #ifdef __KERNEL__
     /* ---------- kernel space : strong CSPRNG already available ---------- */
@@ -309,35 +307,50 @@ int test(const int *m1, const int *m2, int dimension)
     mat_result = (int *) kava_alloc(dimension * dimension * sizeof(int));
 
     // Allocation check
-    if (!mat_result) {
+    if (!mat_result)
+    {
         PRINT("Error allocating CPU memory for KNN results\n");
         ret = -ENOMEM;
         goto out;
     }
 
     usleep_range(200, 500);
+
     ctimes = 0;
     ttimes = 0;
-    
-    for (measure_comp = 0; measure_comp < 2; ++measure_comp) {
-        for (i = 0; i < WARMS + RUNS; ++i) {
-            if ((ret = matmul_cuda(m1, m2, dimension, mat_result, measure_comp))) {
+
+
+    PRINT("######################## INITIALIZING TEST FOR DIMENSION = %lu ########################\n", dimension);
+
+    for (measure_comp = 0; measure_comp < 2; ++measure_comp)
+    {
+        for (i = 0; i < WARMS + RUNS; ++i)
+        {
+            if ((ret = matmul_cuda(m1, m2, dimension, mat_result, measure_comp)))
+            {
                 PRINT("Computation failed on round %d\n", i);
                 goto out;
             }
 
             PRINT("Printing first 5 rows and cols:\n");
-            print_matrix(mat_result, dimension);            
-            if (i >= WARMS) {
+            print_matrix(mat_result, dimension);
+            PRINT("ctime: %lu\n", ctime);
+            PRINT("ttime: %lu\n\n", ttime);
+
+            if (i >= WARMS)
+            {
                 if (measure_comp == 1)
                     ctimes += ctime;
                 else
                     ttimes += ttime;
             }
+
             usleep_range(2000, 5000);
         }
     }
+
     PRINT("matmul_GPU_BATCH_, %lld, %lld\n", ctimes / (RUNS * 1000), ttimes / (RUNS * 1000));
+    PRINT("Final metrics: ctime=%lu, ttime=%lu\n", ctimes, ttimes);
 
 out:
     kava_free(mat_result);
@@ -349,45 +362,53 @@ out:
 int run_matmul(void)
 {
     int ret = 0;
-
     int *m1;
     int *m2;
-
     int min = 0, max = 1;
-    int dimension = 5;
-    int size = dimension * dimension;
 
-    m1 = (int *) kava_alloc(size * sizeof(int));
-    m2 = (int *) kava_alloc(size * sizeof(int));
+    u64 dimension;
+    for (dimension = 100; dimension <= 1000; dimension += 100)
+    {
+        int size = dimension * dimension;
 
-    // Allocation checks
-    if (!m1 || !m2) {
-        PRINT("Error allocating matmul CPU resources\n");
-        ret = -ENOMEM;
-        goto out;
+        m1 = (int *) kava_alloc(size * sizeof(int));
+        m2 = (int *) kava_alloc(size * sizeof(int));
+
+        // Allocation checks
+        if (!m1 || !m2) {
+            PRINT("Error allocating matmul CPU resources\n");
+            ret = -ENOMEM;
+            kava_free(m1);
+            kava_free(m2);
+            return 0;
+        }
+        // Initialize reference and query points with random values
+        init_matrix(m1, size, min, max);
+        init_matrix(m2, size, min, max);
+
+        PRINT("Matrix m1:\n");
+        print_matrix(m1, dimension);
+        PRINT("\n");
+        PRINT("Matrix m2:\n");
+        print_matrix(m2, dimension);
+
+        ret = test(m1, m2, dimension);
+ 
+        if (ret) {
+            PRINT("Matmul execution test failed\n");
+            ret = -ENOENT;   
+            kava_free(m1);
+            kava_free(m2);
+            return 0;
+        }
+
+        kava_free(m1);
+        kava_free(m2);
     }
-    // Initialize reference and query points with random values
-    init_matrix(m1, size, min, max);
-    init_matrix(m2, size, min, max);
-
-    PRINT("Matrix m1:\n");
-    print_matrix(m1, dimension);
-    PRINT("\n");
-    PRINT("Matrix m2:\n");
-    print_matrix(m2, dimension);
-
-    ret = test(m1, m2, dimension);
-    if (ret) {
-        PRINT("Matmul execution test failed\n");
-        ret = -ENOENT;
-        goto out;
-    }
-out:
-    kava_free(m1);
-    kava_free(m2);
 
     return 0;
 }
+
 // ==================== End Matmul ====================
 
 #ifdef __KERNEL__
@@ -421,6 +442,17 @@ MODULE_VERSION(
 #else
 
 int main() {
+    // CFS
+    // Random
+    // ML - CFS 
+    //    
+    //   TICK  PID   PRIO  WEIGHT  VRUNTIME  TARGET
+    //         1     x             1         0.8
+    //         2     y                       0.1
+    //         3     z                       0.1
+    //
+    //
+    // Propio
     int ret = 0;
     if ((ret = init_cuda())) {
         return ret;
