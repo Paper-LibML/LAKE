@@ -226,7 +226,7 @@ struct lake_cmd_nvmlUtilRate {
 struct lake_cmd_libml_dataset_from_csv {
     u32 API_ID;
     dataset *ds;
-    char *filename; 
+    char *filename;
 	char *delim;
     int n_cols;
     enum type_t data_type;
