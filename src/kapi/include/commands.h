@@ -21,6 +21,7 @@
 #define __KAPI_COMMANDS_H__
 
 #include "cuda.h"
+#include "libml.h"
 
 typedef unsigned int u32;
 
@@ -51,7 +52,8 @@ enum lake_api_ids {
     LAKE_API_kleioInference,
     LAKE_API_kleioForceGC,
     LAKE_API_nvmlRunningProcs,
-    LAKE_API_nvmlUtilRate
+    LAKE_API_nvmlUtilRate,
+    LAKE_API_LIBML_dataset_from_csv,
 };
 
 struct lake_cmd_ret {
@@ -221,5 +223,14 @@ struct lake_cmd_nvmlUtilRate {
     u32 API_ID;
 };
 
+struct lake_cmd_libml_dataset_from_csv {
+    u32 API_ID;
+    dataset *ds;
+    char *filename; 
+	char *delim;
+    int n_cols;
+    enum type_t data_type;
+	int headers;
+}
 
 #endif

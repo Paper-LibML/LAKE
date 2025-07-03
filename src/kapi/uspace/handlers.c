@@ -230,6 +230,15 @@ static int lake_handler_nvmlUtilRate(void* buf, struct lake_cmd_ret* cmd_ret) {
     return 0;
 }
 
+static int lake_handler_libml_dataset_from_csv(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_dataset_from_csv *cmd = (struct lake_cmd_libml_dataset_from_csv *) buf;
+    cmd_ret->device = dataset_from_csv(cmd->ds, cmd->filename, cmd->delim,
+                                       cmd->n_cols, cmd->data_type, cmd->headers);
+    cmd_ret->res = 0;
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -262,6 +271,7 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_kleioForceGC,
     lake_handler_nvmlRunningProcs,
     lake_handler_nvmlUtilRate,
+    lake_handler_libml_dataset_from_csv,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {
