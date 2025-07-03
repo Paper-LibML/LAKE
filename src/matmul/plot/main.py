@@ -36,6 +36,8 @@ def plot_times(user_file, kernel_file):
 
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig('execution_time_plot.pdf')
+    # plt.savefig('execution_time_plot.pdf')
+    plt.show()
+
 
 plot_times('file_uspace.csv', 'file_kspace.csv')
