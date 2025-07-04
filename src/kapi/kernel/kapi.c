@@ -371,3 +371,21 @@ CUresult CUDAAPI nvmlUtilRate(int* nproc) {
 	return ret.res;
 }
 EXPORT_SYMBOL(nvmlUtilRate);
+
+int dataset_from_csv(struct dataset *ds, char *filename, 
+					 char *delim, int n_cols, enum type_t data_type, 
+				     int headers) {
+    struct lake_cmd_ret ret;
+	struct lake_cmd_libml_dataset_from_csv cmd = {
+        .API_ID = LAKE_API_LIBML_dataset_from_csv,
+        .ds = ds,
+        .filename = filename,
+        .delim = delim,
+        .n_cols = n_cols,
+        .data_type = data_type,
+        .headers = headers,
+    };
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+	return (int) ret.device;
+}
+EXPORT_SYMBOL(dataset_from_csv);
