@@ -35,23 +35,55 @@ void print_matrix(int *m, int dim)
     PRINT("\n");
 }
 
+char* kava_string(char* s)
+{
+    char* ret = kava_alloc(strlen(s) + 1);
+
+    if (!ret) {
+        PRINT("Failed to allocate memory\n");
+        return -ENOMEM;
+    }
+
+    strcpy(ret, s);
+
+    return ret;
+}
+
 // Test
 int run_dataset_load(void)
 {
     enum type_t data_type = DOUBLE;
-    struct dataset features, labels;
-    int ret1, ret2;
+    struct dataset* features = kava_alloc(sizeof(struct dataset));
+    struct dataset* labels = kava_alloc(sizeof(struct dataset));;
+    int ret1;
+    int ret2;
     int n_input = 7;
     int n_output = 1;
 
     const char *features_path = "/home/gic/Documents/Flank/migration-prediction-notebooks/352-nab_historic_prep_features.csv";
+    char* kava_features_path = kava_string(features_path);
+
     const char *labels_path = "/home/gic/Documents/Flank/migration-prediction-notebooks/352-nab_historic_prep_labels.csv";
+    char* kava_labels_path = kava_string(labels_path);
+
+    const char* delim = ",";
+    char* kava_delim = kava_string(delim);
 
     /* initialize feature and label datasets from .csv files */
-    if (dataset_from_csv(&features, features_path, ",", n_input, data_type, 0) < 0 ||
-        dataset_from_csv(&labels, labels_path, ",", n_output, data_type, 0)) {
+    if (dataset_from_csv(features,
+                         kava_features_path,
+                         delim,
+                         n_input,
+                         data_type,
+                         0) < 0) {
         return -1;
     }
+
+    /* /\* initialize feature and label datasets from .csv files *\/ */
+    /* if (dataset_from_csv(&features, features_path, ",", n_input, data_type, 0) < 0 || */
+    /*     dataset_from_csv(&labels, labels_path, ",", n_output, data_type, 0)) { */
+    /*     return -1; */
+    /* } */
 
     // struct norm_metadata *meta = dataset_normalize (&features);
 
@@ -97,7 +129,9 @@ int run_dataset_load(void)
 
 static int __init dataset_load_init(void)
 {
-    u64 t_start, t_stop, t_time = 0;
+    u64 t_start;
+    u64 t_stop;
+    u64 t_time = 0;
     int ret = 0;
 
     t_start = ktime_get_ns();
@@ -105,6 +139,7 @@ static int __init dataset_load_init(void)
     if ((ret = run_dataset_load())) {
         return ret;
     }
+
     t_stop = ktime_get_ns();
     t_time = t_stop - t_start;
 
@@ -119,7 +154,7 @@ static void __exit dataset_load_fini(void)
 module_init(dataset_load_init);
 module_exit(dataset_load_fini);
 
-MODULE_AUTHOR("Juan Diego Castro & Alvaro Guerrero");
+MODULE_AUTHOR("Alvaro Guerrero & Juan Diego Castro");
 MODULE_DESCRIPTION("A module for loading dataset");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(
