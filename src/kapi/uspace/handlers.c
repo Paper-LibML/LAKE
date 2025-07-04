@@ -233,8 +233,12 @@ static int lake_handler_nvmlUtilRate(void* buf, struct lake_cmd_ret* cmd_ret) {
 static int lake_handler_libml_dataset_from_csv(void* buf, struct lake_cmd_ret* cmd_ret)
 {
     struct lake_cmd_libml_dataset_from_csv *cmd = (struct lake_cmd_libml_dataset_from_csv *) buf;
-    cmd_ret->device = dataset_from_csv(cmd->ds, cmd->filename, cmd->delim,
-                                       cmd->n_cols, cmd->data_type, cmd->headers);
+    cmd_ret->device = dataset_from_csv(lake_shm_address(cmd->ds),
+                                       lake_shm_address(cmd->filename),
+                                       lake_shm_address(cmd->delim),
+                                       cmd->n_cols,
+                                       cmd->data_type,
+                                       cmd->headers);
     cmd_ret->res = 0;
     return 0;
 }
