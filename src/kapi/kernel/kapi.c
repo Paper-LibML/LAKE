@@ -373,14 +373,33 @@ CUresult CUDAAPI nvmlUtilRate(int* nproc) {
 EXPORT_SYMBOL(nvmlUtilRate);
 
 int dataset_from_csv(struct dataset *ds, char *filename, 
-					 char *delim, int n_cols, enum type_t data_type, 
-				     int headers) {
+                     char *delim, int n_cols, enum type_t data_type,
+                     int headers) {
     struct lake_cmd_ret ret;
-	struct lake_cmd_libml_dataset_from_csv cmd = {
+
+    s64 ds_offset = kava_shm_offset(ds);
+    if (ds_offset < 0) {
+        pr_err("ds is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    s64 filename_offset = kava_shm_offset(filename);
+    if (filename_offset < 0) {
+        pr_err("filename is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    s64 delim_offset = kava_shm_offset(delim);
+    if (delim_offset < 0) {
+        pr_err("delim is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    struct lake_cmd_libml_dataset_from_csv cmd = {
         .API_ID = LAKE_API_LIBML_dataset_from_csv,
-        .ds = ds,
-        .filename = filename,
-        .delim = delim,
+        .ds = ds_offset,
+        .filename = filename_offset,
+        .delim = delim_offset,
         .n_cols = n_cols,
         .data_type = data_type,
         .headers = headers,
