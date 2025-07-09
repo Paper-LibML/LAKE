@@ -53,7 +53,8 @@ enum lake_api_ids {
     LAKE_API_kleioForceGC,
     LAKE_API_nvmlRunningProcs,
     LAKE_API_nvmlUtilRate,
-    LAKE_API_LIBML_dataset_from_csv
+    LAKE_API_LIBML_dataset_from_csv,
+    LAKE_API_LIBML_dataset_normalize
 };
 
 struct lake_cmd_ret {
@@ -65,6 +66,7 @@ struct lake_cmd_ret {
         CUmodule module; //ptr
         CUfunction func; //ptr
         CUstream stream; //ptr
+        struct norm_metadata* norm_metadata_ptr;
     };
     size_t pPitch; //malloc pitch ruined everything
 };
@@ -231,6 +233,14 @@ struct lake_cmd_libml_dataset_from_csv {
     int n_cols;
     enum type_t data_type;
 	int headers;
+};
+
+struct lake_cmd_libml_dataset_normalize {
+    u32 API_ID;
+    struct dataset* ds;
+
+    // Return memory address in shared memory
+    struct norm_metadata* ret;
 };
 
 #endif

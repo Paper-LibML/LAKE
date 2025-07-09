@@ -243,6 +243,28 @@ static int lake_handler_libml_dataset_from_csv(void* buf, struct lake_cmd_ret* c
     return 0;
 }
 
+static int lake_handler_libml_dataset_normalize(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_dataset_normalize *cmd = (struct lake_cmd_libml_dataset_normalize*) buf;
+
+    struct norm_metadata* ret = dataset_normalize(lake_shm_address(cmd->ds));
+
+    if (ret == NULL) {
+        cmd_ret->norm_metadata_ptr = NULL;
+        cmd_ret->res = 0;
+
+        return 0;
+    }
+
+    memcpy(lake_shm_address(cmd->ret), ret, sizeof(struct norm_metadata));
+    free(ret);
+
+    cmd_ret->norm_metadata_ptr = cmd->ret;
+    cmd_ret->res = 0;
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -276,6 +298,7 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_nvmlRunningProcs,
     lake_handler_nvmlUtilRate,
     lake_handler_libml_dataset_from_csv,
+    lake_handler_libml_dataset_normalize,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

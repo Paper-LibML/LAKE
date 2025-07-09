@@ -44,7 +44,12 @@ struct dataset {
 	enum type_t data_type;
 };
 
+struct norm_metadata {
+	double* min;
+	double* range;
+};
 
 extern int dataset_from_csv(struct dataset *ds, char *filename, 
 						    char *delim, int n_cols, enum type_t data_type, 
 						    int headers);
+extern struct norm_metadata *dataset_normalize (struct dataset *ds);

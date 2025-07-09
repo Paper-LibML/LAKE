@@ -408,3 +408,42 @@ int dataset_from_csv(struct dataset *ds, char *filename,
 	return (int) ret.device;
 }
 EXPORT_SYMBOL(dataset_from_csv);
+
+struct norm_metadata *dataset_normalize(struct dataset *ds)
+{
+    struct lake_cmd_ret ret;
+
+    s64 ds_offset = kava_shm_offset(ds);
+    if (ds_offset < 0) {
+        pr_err("ds is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    // NOTE: We need to allocate it here because we have to copy in lakeD that
+    // has no access to kava_alloc. This could be a problem if the called API
+    // returns a `malloc`ed memory of runtime determined size and we have to
+    // copy it back as we can't know how much we would have to allocate here.
+    // Ideally we would like lakeD to reserve the space it needs and free us
+    // from the check before returning.
+    //
+    // In truth, we could have _pointers_ to memory in user_space as long as the
+    // memory accesses are resolved only in userspace.
+    struct norm_metadata* aret = kava_alloc(sizeof(struct norm_metadata));
+
+    struct lake_cmd_libml_dataset_normalize cmd = {
+        .API_ID = LAKE_API_LIBML_dataset_normalize,
+        .ds = ds_offset,
+        .ret = kava_shm_offset(aret),
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    // Rigmarole for checking for NULL return.
+    if (ret.norm_metadata_ptr == NULL) {
+        return NULL;
+        kava_free(aret);
+    } else {
+        return aret;
+    }
+}
+EXPORT_SYMBOL(dataset_normalize);
