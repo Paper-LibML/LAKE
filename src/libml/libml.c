@@ -7,6 +7,7 @@
 #include <asm/uaccess.h>
 #include <linux/delay.h>
 #include <linux/ktime.h>
+
 #include "libml.h"
 #include "lake_shm.h"
 #define PRINT(...) pr_warn(__VA_ARGS__)
@@ -37,7 +38,7 @@ void print_matrix(int *m, int dim)
 
 char* kava_string(char* s)
 {
-    char* ret = kava_alloc(strlen(s) + 1);
+    char* ret = kava_alloc((strlen(s) + 1) * sizeof(char));
 
     if (!ret) {
         PRINT("Failed to allocate memory\n");
@@ -57,50 +58,79 @@ int run_dataset_load(void)
     struct dataset* labels = kava_alloc(sizeof(struct dataset));;
     int ret1;
     int ret2;
-    int n_input = 7;
+    int n_input = 8;
     int n_output = 1;
 
-    const char *features_path = "/home/gic/Documents/Flank/migration-prediction-notebooks/352-nab_historic_prep_features.csv";
+    const char *features_path = "/home/gic/Documents/Flank/LAKE/Data/arrayfire_noprep_features.csv";
     char* kava_features_path = kava_string(features_path);
 
-    const char *labels_path = "/home/gic/Documents/Flank/migration-prediction-notebooks/352-nab_historic_prep_labels.csv";
+    const char *labels_path = "/home/gic/Documents/Flank/LAKE/Data/arrayfire_noprep_labels.csv";
     char* kava_labels_path = kava_string(labels_path);
 
     const char* delim = ",";
     char* kava_delim = kava_string(delim);
 
+    PRINT("Features DS\n");
+    PRINT("at %p\n", features);
+    PRINT("   %li\n", kava_shm_offset(features));
+
+    PRINT("Labels DS\n");
+    PRINT("at %p\n", labels);
+    PRINT("   %li\n", kava_shm_offset(labels));
+
+    PRINT("Features path %s\n", kava_features_path);
+    PRINT("at %p\n", kava_features_path);
+    PRINT("   %li\n", kava_shm_offset(kava_features_path));
+
+    PRINT("Labels path %s\n", kava_labels_path);
+    PRINT("at %p\n", kava_labels_path);
+    PRINT("   %li\n", kava_shm_offset(kava_labels_path));
+
+    PRINT("Delim %s\n", kava_delim);
+    PRINT("at %p\n", kava_delim);
+    PRINT("   %li\n", kava_shm_offset(kava_delim));
+
     /* initialize feature and label datasets from .csv files */
     if (dataset_from_csv(features,
                          kava_features_path,
-                         delim,
+                         kava_delim,
                          n_input,
                          data_type,
-                         0) < 0) {
+                         1) < 0) {
         return -1;
     }
 
-    /* /\* initialize feature and label datasets from .csv files *\/ */
-    /* if (dataset_from_csv(&features, features_path, ",", n_input, data_type, 0) < 0 || */
-    /*     dataset_from_csv(&labels, labels_path, ",", n_output, data_type, 0)) { */
-    /*     return -1; */
-    /* } */
+    /* initialize feature and label datasets from .csv files */
+    if (dataset_from_csv(features, kava_features_path, kava_delim, n_input, data_type, 1) < 0 ||
+        dataset_from_csv(labels, kava_labels_path, kava_delim, n_output, data_type, 1)) {
+        return -1;
+    }
 
-    // struct norm_metadata *meta = dataset_normalize (&features);
+    struct norm_metadata *meta = dataset_normalize(features);
 
-    // // printf ("MIN\t\tRANGE\n");
-    // // for (int i = 0; i < n_input; ++i) {
-    // //   printf ("%.4f\t\t%.4f\n", meta->min[i], meta->range[i]);
-    // // }
-    // /* Create layers for the model */
-    // struct layer input, hidden1, hidden2, hidden3, output;
+    // printf ("MIN\t\tRANGE\n");
+    // for (int i = 0; i < n_input; ++i) {
+    //   printf ("%.4f\t\t%.4f\n", meta->min[i], meta->range[i]);
+    // }
+    /* Create layers for the model */
+    struct layer* input = kava_alloc(sizeof(struct layer));
+    struct layer* hidden1 = kava_alloc(sizeof(struct layer));
+    // struct layer* hidden2 = kava_alloc(sizeof(struct layer));
+    // struct layer* hidden3 = kava_alloc(sizeof(struct layer));
+    struct layer* output = kava_alloc(sizeof(struct layer));
 
-    // /* initialize each layer */
-    // init_layer (&input, n_input, 8, NONE);
-    // init_layer (&hidden1, 8, 8, SIGMOID);
-    // /*init_layer (&hidden2, 8, 8, SIGMOID);
-    // init_layer (&hidden3, 8, 8, SIGMOID);*/
-    // init_layer (&output, 8, n_output, SIGMOID);
+    /* initialize each layer */
+    // NOTE: Despite the layers living in the shared memory, `init_layer`
+    // initializes the matrix of each layer that have a `data` pointer to memory
+    // in lakeD.
+    init_layer(input, n_input, 8, NONE);
+    init_layer(hidden1, 8, 8, SIGMOID);
+    /*init_layer(hidden2, 8, 8, SIGMOID);
+    init_layer(hidden3, 8, 8, SIGMOID);*/
+    init_layer(output, 8, n_output, SIGMOID);
 
+    // XXX: Trouble here! `kava_alloc`ed array to other `kava_alloc`ed memory?
+    // Would need nested memory rewriting.
     // struct layer hidden_layers[1] = {hidden1, /*hidden2, hidden3*/};
 
     // /* initialize model */
@@ -122,6 +152,20 @@ int run_dataset_load(void)
     // train (&m, &x_train, &y_train, learning_rate, epochs);
 
     // model_to_kspace (meta, &m);
+
+    kava_free(input);
+    kava_free(hidden1);
+    kava_free(outpu);
+
+    kava_free(features);
+    kava_free(labels);
+
+    kava_free(kava_features_path);
+    kava_free(kava_labels_path);
+    kava_free(kava_delim);
+
+    kava_free(meta);
+
     return 0;
 }
 
