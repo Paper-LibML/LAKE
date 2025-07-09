@@ -265,6 +265,19 @@ static int lake_handler_libml_dataset_normalize(void* buf, struct lake_cmd_ret* 
     return 0;
 }
 
+static int lake_handler_libml_init_layer(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_init_layer *cmd = (struct lake_cmd_libml_init_layer*) buf;
+
+    cmd_ret->r_int = init_layer(lake_shm_address(cmd->l),
+                               cmd->n_input,
+                               cmd->n_output,
+                               cmd->act);
+    cmd_ret->res = 0;
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -299,6 +312,7 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_nvmlUtilRate,
     lake_handler_libml_dataset_from_csv,
     lake_handler_libml_dataset_normalize,
+    lake_handler_libml_init_layer,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

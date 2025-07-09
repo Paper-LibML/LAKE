@@ -447,3 +447,26 @@ struct norm_metadata *dataset_normalize(struct dataset *ds)
     }
 }
 EXPORT_SYMBOL(dataset_normalize);
+
+int init_layer(struct layer *l, int n_input, int n_output, enum act_func act) {
+    struct lake_cmd_ret ret;
+
+    s64 l_offset = kava_shm_offset(l);
+    if (l_offset < 0) {
+        pr_err("l is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    struct lake_cmd_libml_init_layer cmd = {
+        .API_ID = LAKE_API_LIBML_init_layer,
+        .l = l_offset,
+        .n_input = n_input,
+        .n_output = n_output,
+        .act = act,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    return ret.r_int;
+}
+EXPORT_SYMBOL(init_layer);

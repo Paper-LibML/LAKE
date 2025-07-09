@@ -54,7 +54,8 @@ enum lake_api_ids {
     LAKE_API_nvmlRunningProcs,
     LAKE_API_nvmlUtilRate,
     LAKE_API_LIBML_dataset_from_csv,
-    LAKE_API_LIBML_dataset_normalize
+    LAKE_API_LIBML_dataset_normalize,
+    LAKE_API_LIBML_init_layer,
 };
 
 struct lake_cmd_ret {
@@ -67,6 +68,7 @@ struct lake_cmd_ret {
         CUfunction func; //ptr
         CUstream stream; //ptr
         struct norm_metadata* norm_metadata_ptr;
+        int r_int;
     };
     size_t pPitch; //malloc pitch ruined everything
 };
@@ -241,6 +243,14 @@ struct lake_cmd_libml_dataset_normalize {
 
     // Return memory address in shared memory
     struct norm_metadata* ret;
+};
+
+struct lake_cmd_libml_init_layer {
+    u32 API_ID;
+    struct layer *l;
+    int n_input;
+    int n_output;
+    enum act_func act;
 };
 
 #endif
