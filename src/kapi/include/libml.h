@@ -49,6 +49,11 @@ struct norm_metadata {
 	double* range;
 };
 
+enum loss_func {
+	MSE,
+	BCE
+};
+
 enum act_func {
 	RELU,
 	SIGMOID,
@@ -70,9 +75,26 @@ struct layer {
 	enum act_func act;				/* activation function */
 };
 
+struct model {
+	int n_layers;					/* total number of hidden layers */
+	int n_input;					/* size of feature vector */
+	int n_output;					/* size of prediction vector */
+	struct matrix e_sensitivities;  /* error computing block sensitivities */
+	struct layer input_layer;		/* input layer object */
+	struct layer output_layer;		/* output layer object */
+	struct layer *hidden_layers;	/* hidden layer objects */
+	enum loss_func loss;			/* loss function */
+};
+
 extern int dataset_from_csv(struct dataset *ds, char *filename, 
 						    char *delim, int n_cols, enum type_t data_type, 
 						    int headers);
 extern struct norm_metadata *dataset_normalize (struct dataset *ds);
 
 extern int init_layer(struct layer *l, int n_input, int n_output, enum act_func act);
+
+extern struct dataset dataset_slice(struct dataset *ds, int from_1, int to_1,
+									int from_2, int to_2);
+
+extern int init_matrix(struct matrix* m, int rows, int cols,
+                       int preset, struct matrix* existing);

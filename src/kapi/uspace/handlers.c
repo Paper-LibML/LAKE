@@ -278,6 +278,42 @@ static int lake_handler_libml_init_layer(void* buf, struct lake_cmd_ret* cmd_ret
     return 0;
 }
 
+static int lake_handler_libml_dataset_slice(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_dataset_slice *cmd = (struct lake_cmd_libml_dataset_slice*) buf;
+
+    cmd_ret->r_dataset = dataset_slice(lake_shm_address(cmd->ds),
+                                       cmd->from_1,
+                                       cmd->to_1,
+                                       cmd->from_2,
+                                       cmd->to_2);
+    cmd_ret->res = 0;
+
+    return 0;
+}
+
+static int lake_handler_libml_init_matrix(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_init_matrix *cmd = (struct lake_cmd_libml_init_matrix*) buf;
+
+
+    int64_t existing_offset = cmd->existing;
+    void* existing_address = NULL;
+
+    if (existing_offset != NULL) {
+        existing_address = lake_shm_address(cmd->existing);
+    }
+
+    cmd_ret->r_int = init_matrix(lake_shm_address(cmd->m),
+                                 cmd->rows,
+                                 cmd->cols,
+                                 cmd->preset,
+                                 existing_address);
+    cmd_ret->res = 0;
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -313,6 +349,8 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_libml_dataset_from_csv,
     lake_handler_libml_dataset_normalize,
     lake_handler_libml_init_layer,
+    lake_handler_libml_dataset_slice,
+    lake_handler_libml_init_matrix,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

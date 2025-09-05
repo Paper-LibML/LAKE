@@ -56,6 +56,8 @@ enum lake_api_ids {
     LAKE_API_LIBML_dataset_from_csv,
     LAKE_API_LIBML_dataset_normalize,
     LAKE_API_LIBML_init_layer,
+    LAKE_API_LIBML_dataset_slice,
+    LAKE_API_LIBML_init_matrix,
 };
 
 struct lake_cmd_ret {
@@ -69,6 +71,7 @@ struct lake_cmd_ret {
         CUstream stream; //ptr
         struct norm_metadata* norm_metadata_ptr;
         int r_int;
+        struct dataset r_dataset;
     };
     size_t pPitch; //malloc pitch ruined everything
 };
@@ -251,6 +254,24 @@ struct lake_cmd_libml_init_layer {
     int n_input;
     int n_output;
     enum act_func act;
+};
+
+struct lake_cmd_libml_dataset_slice {
+    u32 API_ID;
+    struct dataset *ds;
+    int from_1;
+    int to_1;
+    int from_2;
+    int to_2;
+};
+
+struct lake_cmd_libml_init_matrix {
+    u32 API_ID;
+    struct matrix *m;
+    int rows;
+    int cols;
+    int preset;
+    struct matrix *existing;
 };
 
 #endif

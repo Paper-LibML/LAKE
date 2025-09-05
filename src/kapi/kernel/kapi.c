@@ -470,3 +470,67 @@ int init_layer(struct layer *l, int n_input, int n_output, enum act_func act) {
     return ret.r_int;
 }
 EXPORT_SYMBOL(init_layer);
+struct dataset dataset_slice(struct dataset *ds, int from_1, int to_1,
+                             int from_2, int to_2)
+{
+    struct lake_cmd_ret ret;
+
+    s64 ds_offset = kava_shm_offset(ds);
+    if (ds_offset < 0) {
+        pr_err("ds is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        struct dataset ret;
+        return ret;
+    }
+
+    struct lake_cmd_libml_dataset_slice cmd = {
+        .API_ID = LAKE_API_LIBML_init_layer,
+        .ds = ds_offset,
+        .from_1 = from_1,
+        .to_1 = to_1,
+        .from_2 = from_2,
+        .to_2 = to_2,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    return ret.r_dataset;
+}
+EXPORT_SYMBOL(dataset_slice);
+
+int init_matrix(struct matrix *m, int rows, int cols,
+                int preset, struct matrix *existing)
+{
+    struct lake_cmd_ret ret;
+
+    s64 m_offset = kava_shm_offset(m);
+    if (m_offset < 0) {
+        pr_err("m is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    // XXX: May be bugged? Is zero a valid offset?
+    s64 existing_offset = NULL;
+    if (existing != NULL)
+    {
+        existing_offset = kava_shm_offset(existing);
+
+        if (existing_offset < 0) {
+            pr_err("existing is NOT a kshm pointer (use kava_alloc to fix it)\n");
+            return -1;
+        }
+    }
+
+    struct lake_cmd_libml_init_matrix cmd = {
+        .API_ID = LAKE_API_LIBML_init_matrix,
+        .m = m_offset,
+        .rows = rows,
+        .cols = cols,
+        .preset = preset,
+        .existing = existing_offset,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    return ret.r_int;
+}
+EXPORT_SYMBOL(init_matrix);
