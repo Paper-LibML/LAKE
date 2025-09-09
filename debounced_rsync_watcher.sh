@@ -5,6 +5,7 @@ set -euo pipefail
 LOCAL_DIR=""
 REMOTE=""
 DELAY=6
+NOW=""
 
 # Usage function
 usage() {
@@ -14,16 +15,18 @@ usage() {
     echo "  -l  Local directory to watch (required)"
     echo "  -r  Remote rsync destination (required)"
     echo "  -d  Delay (in seconds) after changes before syncing (default: $DELAY)"
+    echo "  -n  Sync when starting script"
     echo "  -h  Show this help message and exit"
     exit 1
 }
 
 # Parse options
-while getopts "l:r:d:h" opt; do
+while getopts "l:r:d:nh" opt; do
     case ${opt} in
         l) LOCAL_DIR="$OPTARG" ;;
         r) REMOTE="$OPTARG" ;;
         d) DELAY="$OPTARG" ;;
+        n) NOW=1 ;;
         h) usage ;;
         *) usage ;;
     esac
@@ -32,6 +35,15 @@ done
 if [[ -z "$LOCAL_DIR" || -z "$REMOTE" || -z "$DELAY" ]]; then
     echo "Error: options -l, and -r are required."
     usage
+fi
+
+rsync_command() {
+    rsync -azP "$LOCAL_DIR" "$REMOTE"
+}
+
+if [[ -n "$NOW" ]]; then
+    printf "rsyncing at start…\n"
+    rsync_command
 fi
 
 
@@ -49,6 +61,6 @@ while true; do
 
     # After delay with no new changes, run rsync
     echo "No changes detected for $DELAY seconds — syncing..."
-    rsync -azP "$LOCAL_DIR" "$REMOTE"
+    rsync_command
     printf "Sync complete.\n\n"
 done
