@@ -98,3 +98,5 @@ extern struct dataset dataset_slice(struct dataset *ds, int from_1, int to_1,
 
 extern int init_matrix(struct matrix* m, int rows, int cols,
                        int preset, struct matrix* existing);
+
+extern int init_model_2(struct model* m, int n_input, int n_output_hidden, int n_output, enum loss_func loss);

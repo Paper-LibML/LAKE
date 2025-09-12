@@ -58,6 +58,7 @@ enum lake_api_ids {
     LAKE_API_LIBML_init_layer,
     LAKE_API_LIBML_dataset_slice,
     LAKE_API_LIBML_init_matrix,
+    LAKE_API_LIBML_init_model_2,
 };
 
 struct lake_cmd_ret {
@@ -272,6 +273,15 @@ struct lake_cmd_libml_init_matrix {
     int cols;
     int preset;
     struct matrix *existing;
+};
+
+struct lake_cmd_libml_init_model_2 {
+    u32 API_ID;
+    struct model *m;
+    int n_input;
+    int n_output_hidden;
+    int n_output;
+    enum loss_func loss;
 };
 
 #endif

@@ -534,3 +534,28 @@ int init_matrix(struct matrix *m, int rows, int cols,
     return ret.r_int;
 }
 EXPORT_SYMBOL(init_matrix);
+
+int init_model_2(struct model* m, int n_input, int n_output_hidden, int n_output, enum loss_func loss)
+{
+    struct lake_cmd_ret ret;
+
+    s64 m_offset = kava_shm_offset(m);
+    if (m_offset < 0) {
+        pr_err("m is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return -1;
+    }
+
+    struct lake_cmd_libml_init_model_2 cmd = {
+        .API_ID = LAKE_API_LIBML_init_model_2,
+        .m = m_offset,
+        .n_input = n_input,
+        .n_output_hidden = n_output_hidden,
+        .n_output = n_output,
+        .loss = loss,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    return ret.r_int;
+}
+EXPORT_SYMBOL(init_model_2);
