@@ -100,3 +100,5 @@ extern int init_matrix(struct matrix* m, int rows, int cols,
                        int preset, struct matrix* existing);
 
 extern int init_model_2(struct model* m, int n_input, int n_output_hidden, int n_output, enum loss_func loss);
+
+extern void train(struct model *m, struct dataset *x, struct dataset *y, float lr, int epochs);

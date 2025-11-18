@@ -559,3 +559,38 @@ int init_model_2(struct model* m, int n_input, int n_output_hidden, int n_output
     return ret.r_int;
 }
 EXPORT_SYMBOL(init_model_2);
+
+void train(struct model *m, struct dataset *x, struct dataset *y, float lr, int epochs)
+{
+    struct lake_cmd_ret ret;
+
+    s64 m_offset = kava_shm_offset(m);
+    if (m_offset < 0) {
+        pr_err("m is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return;
+    }
+
+    s64 x_offset = kava_shm_offset(x);
+    if (x_offset < 0) {
+        pr_err("x is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return;
+    }
+
+    s64 y_offset = kava_shm_offset(y);
+    if (y_offset < 0) {
+        pr_err("y is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return;
+    }
+
+    struct lake_cmd_libml_train cmd = {
+        .API_ID = LAKE_API_LIBML_train,
+        .m = m_offset,
+        .x = x_offset,
+        .y = y_offset,
+        .lr = lr,
+        .epochs = epochs,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+}
+EXPORT_SYMBOL(train);

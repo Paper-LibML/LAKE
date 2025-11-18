@@ -335,6 +335,25 @@ static int lake_handler_libml_init_model_2(void* buf, struct lake_cmd_ret* cmd_r
     return 0;
 }
 
+static int lake_handler_libml_train(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_libml_train *cmd = (struct lake_cmd_libml_train*) buf;
+
+
+    int64_t model_offset = cmd->m;
+    void* model_address = NULL;
+
+    if (model_offset != NULL) {
+        model_address = lake_shm_address(cmd->m);
+    }
+
+    train(model_address, lake_shm_address(cmd->x), lake_shm_address(cmd->y),
+          cmd->lr, cmd->epochs);
+    cmd_ret->res = 0;
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -373,6 +392,7 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_libml_dataset_slice,
     lake_handler_libml_init_matrix,
     lake_handler_libml_init_model_2,
+    lake_handler_libml_train,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {
