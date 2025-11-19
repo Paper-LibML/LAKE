@@ -594,3 +594,50 @@ void train(struct model *m, struct dataset *x, struct dataset *y, float lr, int 
     lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
 }
 EXPORT_SYMBOL(train);
+
+MlpiModel* mlpi_load(const char *path)
+{
+    struct lake_cmd_ret ret;
+
+    s64 path_offset = kava_shm_offset(path);
+    if (path_offset < 0) {
+        pr_err("path is NOT a kshm pointer (use kava_alloc to fix it)\n");
+        return;
+    }
+
+    struct lake_cmd_pytorch_mlpi_load cmd = {
+        .API_ID = LAKE_API_PYTORCH_mlpi_load,
+        .path = path_offset,
+    };
+
+    lake_send_cmd((void*)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+    return ret.v_ptr;
+}
+EXPORT_SYMBOL(mlpi_load);
+
+int infer_on_row_floats(const MlpiModel *m,
+                        const char *csv_path,
+                        int target_row) {
+  // NOTE: m is not kava alloced
+
+  struct lake_cmd_ret ret;
+
+  s64 csv_path_offset = kava_shm_offset(csv_path);
+  if (csv_path_offset < 0) {
+    pr_err("csv_path is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return;
+  }
+
+  struct lake_cmd_pytorch_infer_on_row_floats cmd = {
+      .API_ID = LAKE_API_PYTORCH_mlpi_load,
+      .m = m,
+      .csv_path = csv_path_offset,
+      .target_row = target_row,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(infer_on_row_floats);

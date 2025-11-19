@@ -354,6 +354,30 @@ static int lake_handler_libml_train(void* buf, struct lake_cmd_ret* cmd_ret)
     return 0;
 }
 
+static int lake_handler_pytorch_mlpi_load(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_pytorch_mlpi_load *cmd = (struct lake_cmd_pytorch_mlpi_load*) buf;
+
+    /* int64_t path_offset = cmd->path; */
+    char* path_address = lake_shm_address(cmd->path);
+    
+    cmd_ret->v_ptr = mlpi_load(path_address);
+
+    return 0;
+}
+
+static int lake_handler_pytorch_infer_on_row_floats(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_pytorch_infer_on_row_floats *cmd = (struct lake_cmd_pytorch_infer_on_row_floats*) buf;
+
+    /* int64_t csv_path_offset = cmd->csv_path; */
+    char* csv_path_address = lake_shm_address(cmd->csv_path);
+    
+    cmd_ret->r_int = infer_on_row_floats(cmd->m, csv_path_address, cmd->target_row);
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -393,6 +417,8 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_libml_init_matrix,
     lake_handler_libml_init_model_2,
     lake_handler_libml_train,
+    lake_handler_pytorch_mlpi_load,
+    lake_handler_pytorch_infer_on_row_floats,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

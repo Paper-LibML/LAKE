@@ -102,3 +102,39 @@ extern int init_matrix(struct matrix* m, int rows, int cols,
 extern int init_model_2(struct model* m, int n_input, int n_output_hidden, int n_output, enum loss_func loss);
 
 extern void train(struct model *m, struct dataset *x, struct dataset *y, float lr, int epochs);
+
+
+// HERE TEMPORARILY
+
+typedef struct {
+    uint32_t in_dim;
+    uint32_t hidden_dim;
+    uint32_t out_dim;
+
+    // Estadísticos de entrada y escalas
+    float  *mean;      // [in_dim]
+    float  *std;       // [in_dim]
+    float   s_x;
+    float   s_w0;
+    float   s_a0;
+    float   s_w1;
+
+    // Cuantización de entrada (para kernel): aquí no la usamos,
+    // pero la cargamos por si la quieres en otro lado.
+    uint8_t  shift_in;
+    uint8_t  shift_x;
+    int32_t *x_mult_q;   // [in_dim]
+    int32_t *x_off_q;    // [in_dim]
+
+    // Cuantización de capas
+    int32_t  M0;
+    uint8_t  shift0;
+    int32_t  M1;
+    uint8_t  shift1;
+
+    // Pesos y biases enteros
+    int8_t  *W0_q;       // [in_dim * hidden_dim]
+    int32_t *B0_q;       // [hidden_dim]
+    int8_t  *W1_q;       // [hidden_dim * out_dim]
+    int32_t *B1_q;       // [out_dim]
+} MlpiModel;

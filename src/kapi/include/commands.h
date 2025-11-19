@@ -60,6 +60,8 @@ enum lake_api_ids {
     LAKE_API_LIBML_init_matrix,
     LAKE_API_LIBML_init_model_2,
     LAKE_API_LIBML_train,
+    LAKE_API_PYTORCH_mlpi_load,
+    LAKE_API_PYTORCH_infer_on_row_floats,
 };
 
 struct lake_cmd_ret {
@@ -74,6 +76,7 @@ struct lake_cmd_ret {
         struct norm_metadata* norm_metadata_ptr;
         int r_int;
         struct dataset r_dataset;
+        void* v_ptr;
     };
     size_t pPitch; //malloc pitch ruined everything
 };
@@ -292,6 +295,18 @@ struct lake_cmd_libml_train {
     struct dataset *y;
     float lr;
     int epochs;
+};
+
+struct lake_cmd_pytorch_mlpi_load {
+    u32 API_ID;
+    const char *path;
+};
+
+struct lake_cmd_pytorch_infer_on_row_floats {
+    u32 API_ID;
+    const MlpiModel *m;
+    const char* csv_path;
+    int target_row;
 };
 
 #endif
