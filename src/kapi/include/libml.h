@@ -103,9 +103,7 @@ extern int init_model_2(struct model* m, int n_input, int n_output_hidden, int n
 
 extern void train(struct model *m, struct dataset *x, struct dataset *y, float lr, int epochs);
 
-
 // HERE TEMPORARILY
-
 typedef struct {
     uint32_t in_dim;
     uint32_t hidden_dim;
@@ -138,3 +136,6 @@ typedef struct {
     int8_t  *W1_q;       // [hidden_dim * out_dim]
     int32_t *B1_q;       // [out_dim]
 } MlpiModel;
+
+extern MlpiModel* mlpi_load(const char *path);
+extern int infer_on_row_floats(const MlpiModel *m, const char *csv_path, int target_row);
