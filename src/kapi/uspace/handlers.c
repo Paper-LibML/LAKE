@@ -378,6 +378,17 @@ static int lake_handler_pytorch_infer_on_row_floats(void* buf, struct lake_cmd_r
     return 0;
 }
 
+static int lake_handler_pytorch_train(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_pytorch_train *cmd = (struct lake_cmd_pytorch_train*) buf;
+
+    cmd_ret->r_int = pytorch_train(lake_shm_address(cmd->features_csv),
+                                   lake_shm_address(cmd->labels_csv),
+                                   lake_shm_address(cmd->hidden));
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -419,6 +430,7 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_libml_train,
     lake_handler_pytorch_mlpi_load,
     lake_handler_pytorch_infer_on_row_floats,
+    lake_handler_pytorch_train,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

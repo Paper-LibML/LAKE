@@ -641,3 +641,37 @@ int infer_on_row_floats(const MlpiModel *m,
   return ret.r_int;
 }
 EXPORT_SYMBOL(infer_on_row_floats);
+
+int pytorch_train(char* features_csv, char* labels_csv, char* hidden) {
+  struct lake_cmd_ret ret;
+
+  s64 features_csv_offset = kava_shm_offset(features_csv);
+  if (features_csv_offset < 0) {
+    pr_err("features_csv is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  s64 labels_csv_offset = kava_shm_offset(labels_csv);
+  if (labels_csv_offset < 0) {
+    pr_err("labels_csv is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  s64 hidden_offset = kava_shm_offset(hidden);
+  if (hidden_offset < 0) {
+    pr_err("hidden is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  struct lake_cmd_pytorch_train cmd = {
+      .API_ID = LAKE_API_pytorch_train,
+      .features_csv = features_csv_offset,
+      .labels_csv = labels_csv_offset,
+      .hidden = hidden_offset,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(pytorch_train);

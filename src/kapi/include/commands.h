@@ -62,6 +62,7 @@ enum lake_api_ids {
     LAKE_API_LIBML_train,
     LAKE_API_PYTORCH_mlpi_load,
     LAKE_API_PYTORCH_infer_on_row_floats,
+    LAKE_API_pytorch_train,
 };
 
 struct lake_cmd_ret {
@@ -307,6 +308,13 @@ struct lake_cmd_pytorch_infer_on_row_floats {
     const MlpiModel *m;
     const char* csv_path;
     int target_row;
+};
+
+struct lake_cmd_pytorch_train {
+    u32 API_ID;
+    char *features_csv;
+    char *labels_csv;
+    char *hidden;
 };
 
 #endif
