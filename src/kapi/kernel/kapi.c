@@ -675,3 +675,80 @@ int pytorch_train(char* features_csv, char* labels_csv, char* hidden) {
   return ret.r_int;
 }
 EXPORT_SYMBOL(pytorch_train);
+
+int infer_on_floats(const MlpiModel *m,
+                    const float *x_f,
+                    int *predicted_class_out) {
+  // The MlpiModel is being kept in lakeD memory
+  struct lake_cmd_ret ret;
+
+  s64 x_f_offset = kava_shm_offset(x_f);
+  if (x_f_offset < 0) {
+    pr_err("x_f is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  s64 predicted_class_out_offset = kava_shm_offset(predicted_class_out);
+  if (predicted_class_out_offset < 0) {
+    pr_err("predicted_class_out is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  struct lake_cmd_infer_on_floats cmd = {
+      .API_ID = LAKE_API_read_row_floats_and_quantize,
+      .m = m,
+      .x_f = x_f_offset,
+      .predicted_class_out = predicted_class_out_offset,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(infer_on_floats);
+
+int read_row_floats_and_quantize(const MlpiModel *m, const char *csv_path,
+                                 int target_row, int8_t *x_q_out) {
+  // The MlpiModel is being kept in lakeD memory
+  struct lake_cmd_ret ret;
+
+  s64 csv_path_offset = kava_shm_offset(csv_path);
+  if (csv_path_offset < 0) {
+    pr_err("csv_path is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  s64 x_q_out_offset = kava_shm_offset(x_q_out);
+  if (x_q_out_offset < 0) {
+    pr_err("x_q_out is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  struct lake_cmd_read_row_floats_and_quantize cmd = {
+      .API_ID = LAKE_API_read_row_floats_and_quantize,
+      .m = m,
+      .csv_path = csv_path_offset,
+      .target_row = target_row,
+      .x_q_out = x_q_out_offset
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(read_row_floats_and_quantize);
+
+int mlpi_model_in_dim(const MlpiModel *m) {
+  // The MlpiModel is being kept in lakeD memory
+  struct lake_cmd_ret ret;
+
+  struct lake_cmd_mlpi_model_in_dim cmd = {
+      .API_ID = LAKE_API_mlpi_model_in_dim,
+      .m = m,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(mlpi_model_in_dim);

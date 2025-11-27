@@ -386,6 +386,53 @@ static int lake_handler_pytorch_train(void* buf, struct lake_cmd_ret* cmd_ret)
                                    lake_shm_address(cmd->labels_csv),
                                    lake_shm_address(cmd->hidden));
 
+static int lake_handler_infer_on_floats(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_infer_on_floats *cmd = (struct lake_cmd_pytorch_train*) buf;
+
+    struct timespec start;
+    struct timespec end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
+    cmd_ret->r_int = infer_on_floats(cmd->m,
+                                     lake_shm_address(cmd->x_f),
+                                     lake_shm_address(cmd->predicted_class_out));
+
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+
+    long seconds  = end.tv_sec - start.tv_sec;
+    long nseconds = end.tv_nsec - start.tv_nsec;
+
+    if (nseconds < 0) {
+        seconds--;
+        nseconds += 1000000000L;
+    }
+
+    long long total_ns = (long long)seconds * 1000000000LL + nseconds;
+
+    printf("infer_on_floats() took %lld nanoseconds\n", total_ns);
+
+    return 0;
+}
+
+static int lake_handler_read_row_floats_and_quantize(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_read_row_floats_and_quantize *cmd = (struct lake_cmd_pytorch_train*) buf;
+
+    cmd_ret->r_int = read_row_floats_and_quantize(
+        cmd->m, lake_shm_address(cmd->csv_path), cmd->target_row,
+        lake_shm_address(cmd->x_q_out));
+
+    return 0;
+}
+
+static int lake_handler_mlpi_model_in_dim(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_mlpi_model_in_dim *cmd = (struct lake_cmd_mlpi_model_in_dim*) buf;
+
+    cmd_ret->r_int = mlpi_model_in_dim(cmd->m);
+
     return 0;
 }
 
@@ -431,6 +478,9 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_pytorch_mlpi_load,
     lake_handler_pytorch_infer_on_row_floats,
     lake_handler_pytorch_train,
+    lake_handler_infer_on_floats,
+    lake_handler_read_row_floats_and_quantize,
+    lake_handler_mlpi_model_in_dim,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

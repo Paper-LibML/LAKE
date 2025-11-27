@@ -140,3 +140,8 @@ typedef struct {
 extern MlpiModel* mlpi_load(const char *path);
 extern int infer_on_row_floats(const MlpiModel *m, const char *csv_path, int target_row);
 extern int pytorch_train(char* features_csv, char* labels_csv, char* hidden);
+
+extern int read_row_floats_and_quantize(const MlpiModel *m, const char *csv_path, int target_row, int8_t *x_q_out);
+extern int infer_on_floats(const MlpiModel *m, const float *x_f, int *predicted_class_out);
+
+extern int mlpi_model_in_dim(const MlpiModel *m);
