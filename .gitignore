@@ -155,3 +155,4 @@ src/linnos/io_replayer/replayer
 .vscode/
 
 lakevenv*/
+.aider*
