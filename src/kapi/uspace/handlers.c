@@ -436,6 +436,28 @@ static int lake_handler_mlpi_model_in_dim(void* buf, struct lake_cmd_ret* cmd_re
     return 0;
 }
 
+static int lake_handler_infer_on_quantized(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_infer_on_quantized *cmd = (struct lake_cmd_mlpi_model_in_dim*) buf;
+
+    cmd_ret->r_int = infer_on_quantized(cmd->m,
+                                        lake_shm_address(cmd->x_q),
+                                        lake_shm_address(cmd->predicted_class_out));
+
+    return 0;
+}
+
+static int lake_handler_quantize_input_float(void* buf, struct lake_cmd_ret* cmd_ret)
+{
+    struct lake_cmd_quantize_input_float *cmd = (struct lake_cmd_quantize_input_float*) buf;
+
+    quantize_input_float(cmd->m,
+                         lake_shm_address(cmd->x_f),
+                         lake_shm_address(cmd->x_q));
+
+    return 0;
+}
+
 /*********************
  * 
  *  END OF HANDLERS
@@ -481,6 +503,8 @@ static int (*kapi_handlers[])(void* buf, struct lake_cmd_ret* cmd_ret) = {
     lake_handler_infer_on_floats,
     lake_handler_read_row_floats_and_quantize,
     lake_handler_mlpi_model_in_dim,
+    lake_handler_infer_on_quantized,
+    lake_handler_quantize_input_float,
 };
 
 void lake_handle_cmd(void* buf, struct lake_cmd_ret* cmd_ret) {

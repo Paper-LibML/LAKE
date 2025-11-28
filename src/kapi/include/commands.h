@@ -66,6 +66,8 @@ enum lake_api_ids {
     LAKE_API_infer_on_floats,
     LAKE_API_read_row_floats_and_quantize,
     LAKE_API_mlpi_model_in_dim,
+    LAKE_API_infer_on_quantized,
+    LAKE_API_quantize_input_float,
 };
 
 struct lake_cmd_ret {
@@ -338,6 +340,20 @@ struct lake_cmd_read_row_floats_and_quantize {
 struct lake_cmd_mlpi_model_in_dim {
     u32 API_ID;
     const MlpiModel *m;
+};
+
+struct lake_cmd_infer_on_quantized {
+    u32 API_ID;
+    const MlpiModel* m;
+    const int8_t* x_q;
+    int* predicted_class_out;
+};
+
+struct lake_cmd_quantize_input_float {
+    u32 API_ID;
+    const MlpiModel* m;
+    const float* x_f;
+    int8_t* x_q;
 };
 
 #endif

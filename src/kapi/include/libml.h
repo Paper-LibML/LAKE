@@ -145,3 +145,6 @@ extern int read_row_floats_and_quantize(const MlpiModel *m, const char *csv_path
 extern int infer_on_floats(const MlpiModel *m, const float *x_f, int *predicted_class_out);
 
 extern int mlpi_model_in_dim(const MlpiModel *m);
+
+extern int infer_on_quantized(const MlpiModel *m, const int8_t *x_q, int *predicted_class_out);
+extern void quantize_input_float(const MlpiModel *m, const float *x_f, int8_t *x_q);

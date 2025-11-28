@@ -752,3 +752,59 @@ int mlpi_model_in_dim(const MlpiModel *m) {
   return ret.r_int;
 }
 EXPORT_SYMBOL(mlpi_model_in_dim);
+
+int infer_on_quantized(const MlpiModel *m, const int8_t *x_q, int *predicted_class_out) {
+  // NOTE: The MlpiModel is being kept in lakeD memory
+
+  struct lake_cmd_ret ret;
+
+  s64 x_q_offset = kava_shm_offset(x_q);
+  if (x_q_offset < 0) {
+    pr_err("x_q is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  s64 predicted_class_out_offset = kava_shm_offset(predicted_class_out);
+  if (predicted_class_out_offset < 0) {
+    pr_err("predicted_class_out is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return 0;
+  }
+
+  struct lake_cmd_infer_on_quantized cmd = {
+      .API_ID = LAKE_API_mlpi_model_in_dim,
+      .m = m,
+      .x_q = x_q_offset,
+      .predicted_class_out = predicted_class_out_offset,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+
+  return ret.r_int;
+}
+EXPORT_SYMBOL(infer_on_quantized);
+
+void quantize_input_float(const MlpiModel *m, const float *x_f, int8_t *x_q) {
+  struct lake_cmd_ret ret;
+
+  s64 x_f_offset = kava_shm_offset(x_f);
+  if (x_f_offset < 0) {
+    pr_err("x_f is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return;
+  }
+
+  s64 x_q_offset = kava_shm_offset(x_q);
+  if (x_q_offset < 0) {
+    pr_err("x_q is NOT a kshm pointer (use kava_alloc to fix it)\n");
+    return;
+  }
+
+  struct lake_cmd_quantize_input_float cmd = {
+      .API_ID = LAKE_API_quantize_input_float,
+      .m = m,
+      .x_f = x_f_offset,
+      .x_q = x_q_offset,
+  };
+
+  lake_send_cmd((void *)&cmd, sizeof(cmd), CMD_SYNC, &ret);
+}
+EXPORT_SYMBOL(quantize_input_float);
